@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhangChen.Mapper.teaMapper">
+
+	<select id="getTeacherClasses" parameterType="integer" resultMap= "teacherResultMap">
+        select * from teacher left join class on teacher.t_id = class.teacher_id where t_id = 1
+    </select>
+
+
+
+            <resultMap type= "com.zhangChen.Entity.Teacher" id= "teacherResultMap">
+                <id property= "id" column= "t_id" />
+                <result property= "name" column= "t_name" />
+                <collection property="classes" ofType="com.zhangChen.Entity.c_class">
+                    <id property="id" column="c_id"></id>
+                    <result property="name" column="c_name"></result>
+                </collection>
+            </resultMap>
+        </mapper>
